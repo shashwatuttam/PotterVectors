@@ -24,40 +24,42 @@ def validatedata(query):
 
 class gui:
 	def __init__(self, master):
-		self.label = Label(master, text='Harry Potter Vectors', font=("TimesNewRoman",40)).grid(row =0, columnspan=4)
+		#Heading
+		self.label = Label(master, text='Harry Potter Vectors', font=("TimesNewRoman",40)).grid(row =0, columnspan=6)
 		self.blanklabel = Label(master, text="", font=("TimesNewRoman",40)).grid(row=1)
-		self.label2 = Label(master, text = "Enter a single word", font=("TimesNewRoman",20)).grid(row = 2, column=0, columnspan=2)
 
-		self.inputbox = Text(master, height=4, width=40)
-		self.inputbox.grid(row = 2, column = 2)
+		#Tnput
+		self.label2 = Label(master, text = "Enter a single word", font=("TimesNewRoman",25)).grid(row = 2, column=0, columnspan=3, padx=20, pady=3)
+		self.inputbox = Text(master, height=2, width=30, font=("TimesNewRoman",20))
+		self.inputbox.grid(row = 2, column=3, columnspan=2)
 
-		self.blanklabel2 = Label(master, text="", font=("TimesNewRoman",20)).grid(row=3)
+		#Submit Button
+		self.submitbutton = Button(master, text="Submit", font=("TimesNewRoman",20), command = self.submitfunc, height=2, width = 10).grid(row=2, column=5, columnspan=2, padx=20)
 
-		#Button change later
-		self.submitbutton = Button(master, text="Submit", command = self.submitfunc, height=4, width = 30).grid(row=4, columnspan=4)
+		self.blanklabel3 = Label(master, text="", font=("TimesNewRoman",30)).grid(row=3)
 
-		self.blanklabel3 = Label(master, text="", font=("TimesNewRoman",30)).grid(row=5)
-
+		#Result Labels
 		self.reslabel = Label(master, text = "", font=("TimesNewRoman",30))
-		self.reslabel.grid(row=6)
+		self.reslabel.grid(row=4)
 
-		self.blanklabel4 = Label(master, text="", font=("TimesNewRoman",30)).grid(row=7)
+		self.blanklabel4 = Label(master, text="", font=("TimesNewRoman",30)).grid(row=5)
 
 		self.cbow_label = Label(master, text="",font=("TimesNewRoman",20))
-		self.cbow_label.grid(row = 8, column = 0, columnspan = 2)
+		self.cbow_label.grid(row = 6, column = 0, columnspan = 2)
 		self.sg_label = Label(master, text="",font=("TimesNewRoman",20))
-		self.sg_label.grid(row = 8, column = 2, columnspan = 2)
+		self.sg_label.grid(row = 6, column = 2, columnspan = 2)
 
+		#Results
 		self.cbow_data = []
 		self.sg_data = []
 		for x in range(10):
 			for y in range(4):
 				if y<2:
-					self.cbow_data.append(Label(root, text = ""))
-					self.cbow_data[-1].grid(row = x+9,column = y)
+					self.cbow_data.append(Label(root, text = "", font=("TimesNewRoman",15)))
+					self.cbow_data[-1].grid(row = x+7,column = y, padx=20, pady=3)
 				else:
-					self.sg_data.append(Label(root, text = ""))
-					self.sg_data[-1].grid(row = x+9,column = y)
+					self.sg_data.append(Label(root, text = "", font=("TimesNewRoman",15)))
+					self.sg_data[-1].grid(row = x+7,column = y, padx=20, pady=3)
 
 
 	def submitfunc(self):
@@ -93,5 +95,6 @@ class gui:
 
 root = Tk()
 root.geometry('1280x720')
+root.title("Word2Vec on HP")
 b = gui(root)
 root.mainloop()						
